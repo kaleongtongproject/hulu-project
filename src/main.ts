@@ -114,6 +114,8 @@ async function renderTiles(collections: any[]) {
             watermark.style.pointerEvents = 'none';
             watermark.style.fontFamily =
               'Graphik, "Helvetica Neue", Arial, sans-serif';
+            watermark.style.display = 'block';
+            watermark.style.zIndex = '2';
 
             tile.appendChild(watermark);
             tile.appendChild(img);
@@ -150,6 +152,10 @@ function setupTileNavigation(allRows: any) {
           img.style.border = 'none';
         }
         tile.style.outline = 'none';
+        const watermark = tile.querySelector('.watermark');
+        if (watermark) {
+          watermark.style.display = 'block';
+        }
       })
     );
 
