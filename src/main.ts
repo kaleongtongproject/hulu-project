@@ -129,10 +129,12 @@ function setupTileNavigation(allRows: any) {
       selectedTile.focus();
 
       if (img) {
+        img.style.transition =
+          'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out';
         img.style.transform = 'scale(1.06)';
-        img.style.border = '2px solid white'; // Add white border to image only
-        img.style.borderRadius = '4px'; // Ensure rounded edges match tile design
-        img.style.outline = 'none'; // Remove any default focus outline
+        img.style.border = '2px solid white';
+        img.style.borderRadius = '4px';
+        img.style.outline = 'none';
       }
     }
   }
@@ -166,8 +168,8 @@ async function isValidImage(url: string) {
     const img = new Image();
     img.src = url;
 
-    img.onload = () => resolve(true); // Image is valid
-    img.onerror = () => resolve(false); // Image failed to load
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
   });
 }
 
