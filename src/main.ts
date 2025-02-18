@@ -55,6 +55,13 @@ async function renderTiles(collections: any[]) {
           tile.className = 'tile';
           tile.tabIndex = 0;
           tile.dataset.index = index;
+          tile.addEventListener('click', () => openModal(item));
+          tile.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+              openModal(item);
+            }
+          });
+
           tile.style.opacity = '0';
           tile.style.transform = 'translateY(20px)';
           tile.style.transition =
@@ -247,6 +254,8 @@ function openModal(item: any) {
     modalCloseBtn.style.cursor = 'pointer';
     modalCloseBtn.style.lineHeight = '10px';
 
+    document.addEventListener('keydown', handleKeyPress);
+
     modal.style.position = 'fixed';
     modal.style.top = '0';
     modal.style.left = '0';
@@ -291,6 +300,14 @@ function openModal(item: any) {
         modal.classList.add('hidden');
       }
     });
+  }
+}
+
+function handleKeyPress(event: any) {
+  const modal = document.getElementById('modal');
+  if (event.key === 'Backspace' && modal && modal.style.display === 'flex') {
+    modal.style.display = 'none';
+    document.removeEventListener('keydown', handleKeyPress); // Cleanup event
   }
 }
 
