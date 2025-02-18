@@ -93,6 +93,22 @@ async function renderTiles(collections: any[]) {
             caption.style.whiteSpace = 'nowrap';
             caption.style.textOverflow = 'ellipsis';
 
+            const watermark = document.createElement('div');
+            watermark.innerText = 'hulu';
+            watermark.style.position = 'absolute';
+            watermark.style.bottom = '40px';
+            watermark.style.right = '8px';
+            watermark.style.fontSize = '1.2rem';
+            watermark.style.fontWeight = 'bold';
+            watermark.style.color = '#1ce783';
+            watermark.style.background = 'transparent';
+            watermark.style.padding = '3px 6px';
+            watermark.style.borderRadius = '4px';
+            watermark.style.pointerEvents = 'none';
+            watermark.style.fontFamily =
+              'Graphik, "Helvetica Neue", Arial, sans-serif';
+
+            tile.appendChild(watermark);
             tile.appendChild(img);
             tile.appendChild(caption);
             tile.addEventListener('click', () => openModal(item));
