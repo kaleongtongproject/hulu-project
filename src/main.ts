@@ -55,6 +55,16 @@ async function renderTiles(collections: any[]) {
           tile.className = 'tile';
           tile.tabIndex = 0;
           tile.dataset.index = index;
+          tile.style.opacity = '0';
+          tile.style.transform = 'translateY(20px)';
+          tile.style.transition =
+            'opacity 0.6s ease-out, transform 0.6s ease-out';
+
+          setTimeout(() => {
+            tile.style.opacity = '1';
+            tile.style.transform = 'translateY(0)';
+          }, index * 100); // Staggered effect
+
           const imageUrl = constructImageUrl(
             item.visuals.artwork.vertical_tile.image.path
           );
@@ -188,7 +198,6 @@ function openModal(item: any) {
   if (modal && modalBody && modalCloseBtn) {
     const headline = item.visuals.headline || 'No headline';
     const body = item.visuals.body || 'No description available.';
-    console.log('item: ', item);
     const imageUrl = constructImageUrl(
       item.visuals.artwork.vertical_tile.image.path
     );
@@ -217,6 +226,10 @@ function openModal(item: any) {
     modalCloseBtn.style.display = 'flex';
     modalCloseBtn.style.justifyContent = 'flex-end';
     modalCloseBtn.style.cursor = 'pointer';
+    modalCloseBtn.style.fontSize = '2rem';
+    modalCloseBtn.style.fontWeight = 'bold';
+    modalCloseBtn.style.cursor = 'pointer';
+    modalCloseBtn.style.lineHeight = '10px';
 
     modal.style.position = 'fixed';
     modal.style.top = '0';
@@ -242,7 +255,12 @@ function openModal(item: any) {
       modalContent.style.width = '100%';
       modalContent.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
       modalContent.style.textAlign = 'center';
-      modalContent.style.animation = 'fadeIn 0.3s ease';
+      modalContent.style.transform = 'translateY(20px)';
+      modalContent.style.transition = 'transform 0.3s ease-out';
+
+      setTimeout(() => {
+        modalContent.style.transform = 'translateY(0)';
+      }, 50);
     }
 
     modal.classList.remove('hidden');
